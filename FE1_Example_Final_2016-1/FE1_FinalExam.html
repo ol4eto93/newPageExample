@@ -1,0 +1,210 @@
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Example Final Test</title>
+    <style>
+        #main {
+            border: 3px ridge #737373;
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0;
+        }
+        
+        #nested {
+            border: 4px double #284d00;
+            width: 90%;
+            margin: 15px;
+            padding: 15;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        #smallDiv {
+            border: 3px outset #b3b3b3;
+            width: 80%;
+            margin: 15px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        #anotherQuote {
+            text-align: center;
+            font-weight: bold;
+            font-style: italic;
+            font-size: 18;
+            margin: 15;
+            padding: 15;
+            background-color: #99ff33;
+        }
+        
+        .menu {
+            list-style-type: none;
+            overflow: hidden;
+            background-color: #99ff33;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+        
+        .quotes {
+            width: 40%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+        
+        .personalInfo {
+            background-color: greenyellow;
+            height: 10%;
+            text-align: center;
+            font-weight: bold;
+            font-size: 30;
+        }
+        
+        .rightButton {
+            display: block;
+            float: right;
+        }
+        
+        .footer {
+            background-color: #99ff33;
+            text-indent: 20px;
+            font-size: 18px;
+        }
+        
+        .footerRight {
+            display: block;
+            float: right;
+        }
+        
+        p {
+            text-align: center;
+            margin: 20;
+        }
+        
+        a {
+            float: center;
+            display: inline-block;
+            color: black;
+            text-align: center;
+            padding: 2px 15px;
+            text-decoration: none;
+        }
+        
+        img {
+            background-color: #99ff33;
+            border: 3px dashed black;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        a:hover {
+            background-color: darkolivegreen;
+            color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <div class="menu">
+            <a href="#">Beginning</a>
+            <a href="#">Gallery</a>
+            <a href="#">FAQ</a>
+            <a href="#">About us</a>
+            <a href="#">End</a>
+        </div>
+        <div id="nested">
+            <div id="smallDiv">
+                <div class="quotes">
+                    <blockquote id="anotherQuote">
+                        "Do not dwell in the past, do not dream of the future, concentrate the mind on the present moment!"<br /><br />
+                        <span>- Buddha(Siddhartha Gautama)</span>
+                    </blockquote>
+                    <input type="button" value="<= Prev" onclick="changeButton('prev');" />
+                    <input type="button" value="Add" onclick="addQuote();" />
+                    <input type="button" value="Next =>" onclick="changeButton('next');" />
+                </div>
+            </div>
+            <p>Some thoughts</p>
+            <p class="personalInfo">Personal Information</p>
+            <form method="get" action="http://enevsoft.net/echo.php">
+                <fieldset>
+                    <legend>Personal Details</legend>
+                    <label for="yourFullName">Full Name:</label>
+                    <input type="text" name="fullName" placeholder="Write your full name here" id="yourFullName" /><br /> Your sex:
+                    <input type="radio" name="sex" />Male
+                    <input type="radio" name="sex" />Female
+                    <input type="radio" name="sex" />Refuse to say<br />
+                    <label for="birthDate">Birth Date:</label>
+                    <input type="date" name="yourBirthday" id="birthDate" /><br /> Birth Place:
+                    <select id="newCity" onclick="addOption('newCity');">
+							<option>Mayna Town</option>
+						</select><br /> Spoken Languages:
+                    <label for="bgLang">Bulgarian</label>
+                    <input type="checkbox" name="lang" id="bgLang" />
+                    <label for="enLang">English</label>
+                    <input type="checkbox" name="lang" id="enLang" />
+                    <label for="chineseLang">Chinese</label>
+                    <input type="checkbox" name="lang" id="chineseLang" /><br />
+                    <label for="myNumber">Contact Number:</label>
+                    <input type="text" name="phoneNum" placeholder="Write your phone number here" size="22" id="myNumber" /><br />
+                    <textarea rows="6" cols="60" placeholder="Plese, write something cool, let's share the moment... ;-)"></textarea><br /><br />
+                    <input type="submit" value="Submit" class="leftButton" />
+                    <input type="reset" value="Reset" class="rightButton" />
+                </fieldset>
+            </form>
+            <img src="Believe In Myself.jpg" alt="believe" />
+        </div>
+        <div class="footer">
+            &reg; Yordan Enev. All rights reserved
+            <a href="http://webacademy.bg/plovdiv/" name="waLink" class="footerRight">Web Academy</a>
+        </div>
+    </div>
+    <script>
+        // Function to add a quote
+        function addQuote() {
+            var anotherQuote = document.getElementById('anotherQuote');
+            var newQuote = document.createElement('blockquote'); //Create
+            var promptValue = prompt('Enter new quote', 'New quote'); //Потребителя въвежда цитат
+            newQuote.innerHTML = promptValue; //Добавяме въведената информация към 'blockquote' 
+            anotherQuote.appendChild(newQuote); // Добавяме създаденото blockquote към списъка
+        }
+
+        // функция за предишен и следващ цитат
+        var changeKey = 0;
+
+        function changeButton(prevNext) {
+            // Деклариране на масив
+            var quote = ['"That which does not kill us makes us stronger."<br /><br />- Friedrich Nietzsche', '"You must be the change you wish to see in the world."<br /><br /> - Mahatma Gandhi', '"Don\'t cry because it\'s over, smile because it happened."<br /><br /> -Dr Suess'];
+            var change = document.getElementById('anotherQuote');
+            if (prevNext == 'prev') {
+                changeKey--;
+                if (changeKey < 0) {
+                    changeKey = quote.length - 1;
+                }
+            } else {
+                changeKey++;
+                if (changeKey > quote.length - 1) {
+                    changeKey = 0;
+                }
+            }
+            console.log(changeKey);
+            console.log(change);
+            change.innerHTML = quote[changeKey];
+        }
+
+        function addOption(id) {
+            var select = document.getElementById('newCity');
+            var newOption = document.createElement('option');
+            var promptValue = prompt('Enter another city');
+            newOption.innerHTML = promptValue;
+            select.appendChild(newOption);
+        }
+    </script>
+</body>
+
+</html>
